@@ -1,0 +1,30 @@
+= form_for @product do |f|
+  - if @product.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@product.errors.count, "error")
+        prohibited this product from being saved:
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+  .form-group
+    .field
+      = f.label :name
+      %br/
+      = f.text_field :name
+  .form-group
+    .field
+      = f.label :price
+      %br/
+      = f.text_field :price
+  .form-group
+    .field
+      = f.label :category_id
+      %br/
+      = f.collection_select :category_id, Category.order(:name), :id, :name
+  .form-group
+    .field
+      = f.check_box :discontinued, { class: "form-check-input" }
+      = f.label :discontinued
+  .actions
+    = f.submit{ class: "btn btn-primary" }

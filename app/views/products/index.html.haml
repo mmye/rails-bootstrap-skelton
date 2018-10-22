@@ -1,0 +1,33 @@
+%h1 商品一覧
+%p ダウンロード:
+= link_to "CSV", products_path(format: "csv") |
+= link_to "Excel", products_path(format: "xls")
+
+= form_tag discontinue_products_path, method: :put do
+  %table#products.table
+    %tr
+      %th
+      %th.col 商品名
+      %th.col カテゴリ
+      %th.col 販売中？
+      %th.col 価格
+      %th.col
+    - @products.each do |product|
+      %tr
+        %td
+          = check_box_tag "product_ids[]", product.id
+        %td
+          = product.name
+        %td
+          = product.category ? product.category.name : '-'
+        %td
+          = product.discontinued ? "はい" : "いいえ"
+        %td
+          = product.price.to_s(:delimited) + "円"
+        %td
+          = link_to '編集', edit_product_path(product)
+        %td
+          = link_to '削除', product, method: :delete
+  = submit_tag "更新", class: "btn btn-dark"
+.mt-1
+= link_to "CSVを読み込む", new_product_import_path, class: "btn btn-dark"

@@ -1,0 +1,28 @@
+%h1 商品読み込み
+%p CSVまたはExcelファイルから商品レコードを読み込みます。最初の行には列名が記載されていることが必要です。商品データは２行目以降に配置してください。
+
+%ul
+  - Product.columns.each do |column|
+    - if column.name.in? ["id", *Product.accessible_attributes]
+      %li
+        %strong
+          = column.name
+          /= column.type.to_s.titleize type
+%p レコードのIDが登録済みの場合、そのデータは更新されます。
+
+= form_for @product_import do |f|
+  - if @product_import.errors.any?
+    %div#error_explanation
+      %h2
+        = pluralize(@product_import.errors.count, "error")
+        %p が原因で読み込みが中断しました。
+        %ul
+          - @product_import.errors.full_messages.each do |msg|
+            %li
+              = msg
+  .field.form-group
+    = f.file_field :file
+    .buttons
+      = f.submit "読み込み", { class: "btn btn-dark" }
+
+

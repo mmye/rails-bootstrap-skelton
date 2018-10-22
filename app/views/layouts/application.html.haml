@@ -1,0 +1,18 @@
+!!! 5
+%html
+  %head
+    %title MyApp
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tag
+  %body
+    %nav.navbar.navbar-dark.bg-dark
+      %a.navbar-brand{ href: "#" }
+        %img.d-inline-block.align-top{ src: "/assets/brand/bootstrap-solid.svg", width: "30", height: "30", alt: "" }
+        Bootstrap
+    %div.container
+      .mt-5
+      - flash.each do |name, msg|
+        = content_tag :div, msg, id: "flash_#{name}"
+      = yield
+

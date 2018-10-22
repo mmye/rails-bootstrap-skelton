@@ -38,6 +38,10 @@ gem 'jbuilder', '~> 2.5'
 #----------------------------------------------------------------
 gem 'bootstrap', '~>4.0.0'
 gem 'jquery-rails'
+gem 'haml-rails'
+
+# Excel reader/writer
+gem 'roo'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
