@@ -6,7 +6,8 @@ class ProductImportsController < ApplicationController
   def create
     @product_import = ProductImport.new(params[:product_import])
     if @product_import.save
-      redirect_to root_url, notice: "正常に読み込みました。"
+      flash[:success] = "正常に読み込みました。"
+      redirect_to root_url
     else
       render :new
     end

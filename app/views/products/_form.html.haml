@@ -7,24 +7,23 @@
       %ul
         - @product.errors.full_messages.each do |msg|
           %li= msg
-  .form-group
-    .field
+  %form
+    .form-group
       = f.label :name
       %br/
-      = f.text_field :name
-  .form-group
-    .field
+      = f.text_field :name, :class => "form-control"
+    .form-group
       = f.label :price
       %br/
-      = f.text_field :price
-  .form-group
-    .field
+      = f.text_field :price, :class => "form-control"
+
+    .form-group
       = f.label :category_id
       %br/
-      = f.collection_select :category_id, Category.order(:name), :id, :name
-  .form-group
-    .field
-      = f.check_box :discontinued, { class: "form-check-input" }
+      = f.collection_select( :category_id, Category.order(:name), :id, :name, {prompt: ""}, {class: "form-control"})
+    .form-check
+      = f.check_box :discontinued, :class => "form-check-input"
       = f.label :discontinued
-  .actions
-    = f.submit{ class: "btn btn-primary" }
+    .mt-3
+    .actions
+      = f.submit :class => "btn btn-primary"

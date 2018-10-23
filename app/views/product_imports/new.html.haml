@@ -21,7 +21,7 @@
             %li
               = msg
   .field.form-group
-    = f.file_field :file
+    = f.file_field :file, :class => "form-control-file"
     .buttons
       = f.submit "読み込み", { class: "btn btn-dark" }
 

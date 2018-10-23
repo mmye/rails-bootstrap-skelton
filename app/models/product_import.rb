@@ -1,6 +1,5 @@
 class ProductImport
   extend ActiveModel::Naming
-  #include ActiveModel::Model
   include ActiveModel::Conversion
   include ActiveModel::Validations
 

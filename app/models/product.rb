@@ -12,6 +12,6 @@ class Product < ApplicationRecord
   end
 
   def self.accessible_attributes
-    ["name", "price", "released_on"]
+    ["name", "category_id" ,"price", "released_on"]
   end
 end

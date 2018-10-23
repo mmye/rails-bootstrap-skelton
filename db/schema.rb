@@ -10,13 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181021123848) do
+ActiveRecord::Schema.define(version: 20181021123754) do
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
   end
 
-# Could not dump table "products" because of following StandardError
-#   Unknown type 'bool' for column 'discontinued'
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.integer "category_id"
+    t.integer "price"
+    t.boolean "discontinued"
+    t.date "released_on"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_products_on_category_id"
+  end
 
 end
